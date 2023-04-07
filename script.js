@@ -183,7 +183,7 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 
 allSections.forEach(function (section) {
   sectionObserver.observe(section);
-  // section.classList.add('section--hidden');
+  section.classList.add('section--hidden');
 });
 
 // Lazy loading images
@@ -281,14 +281,12 @@ const slider = function () {
   btnLeft.addEventListener('click', prevSlide);
 
   document.addEventListener('keydown', function (e) {
-    console.log(e);
     if (e.key === 'ArrowLeft') prevSlide();
     e.key === 'ArrowRight' && nextSlide();
   });
 
   dotContainer.addEventListener('click', function (e) {
     if (e.target.classList.contains('dots__dot')) {
-      console.log('DOT');
       const { slide } = e.target.dataset;
       goToSlide(slide);
       activateDot(slide);
@@ -420,4 +418,21 @@ console.log(h1.parentElement.children);
 [...h1.parentElement.children].forEach(function (el) {
   if (el !== h1) el.style.transform = 'scale(0.5)';
 });
+
+///////////////////////////////////////
+// DOM lifecycle
+document.addEventListener('DOMContentLoaded', function(e) {
+  console.log('HTML parsed and DOM tree built!');
+})
+
+window.addEventListener('load', function(e) {
+  console.log('Page fully loaded', e);
+});
+
+window.addEventListener('beforeunload', function(e) {
+  e.preventDefault();
+  console.log(e)
+  e.returnValue = '';
+})
 */
+
